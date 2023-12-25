@@ -1,2 +1,3 @@
 (library
- (name nixy))
+ (name nixy)
+ (libraries sys ctypes ctypes-foreign))

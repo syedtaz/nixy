@@ -1,0 +1,3 @@
+(library
+ (name sys)
+ (libraries ctypes ctypes-foreign))
