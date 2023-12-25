@@ -1,0 +1,4 @@
+(executable
+ (public_name nixy)
+ (name main)
+ (libraries nixy))

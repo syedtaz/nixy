@@ -1,0 +1,6 @@
+# dune init proj nixy
+# OCAMLPARAM: unset
+# Shared cache: disabled
+# Shared cache location: /Users/taz/.cache/dune/db
+# Workspace root: /Users/taz/Projects/nixy
+# Auto-detected concurrency: 10
