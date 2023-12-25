@@ -1,0 +1,1 @@
+Experimental safe alternative to libc using ctypes. Inspired by [*nix](https://github.com/nix-rust/nix).
