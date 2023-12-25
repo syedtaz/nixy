@@ -1,5 +1,6 @@
 open Ctypes
 open Foreign
+open Utils
 
 module Flags = struct
   type access =
@@ -18,10 +19,10 @@ module Flags = struct
 end
 
 module C = struct
-  let access = foreign ~check_errno:true "access" (ptr char @-> int @-> returning int)
+  let access = foreign "access" (ptr char @-> int @-> returning int)
 end
 
 let access path ~flag =
-  let p = CArray.start @@ CArray.of_string path in
-  C.access p (Flags.bits_of_access flag)
+  let res = C.access (CArray.start @@ CArray.of_string path) (Flags.bits_of_access flag) in
+  Errno.result res
 ;;

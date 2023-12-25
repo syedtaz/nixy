@@ -1,3 +1,6 @@
 let () =
   let open Nixy.Stat in
-  Format.print_int @@ access "/Users/taz/.cargo/bin/cargo" ~flag:`X_OK
+  match access "/Users/taz/.cargo/bin/cargo" ~flag:`X_OK with
+    | Ok x -> Format.printf "%d\n" x
+    | Error s -> Format.print_string s
+;;
