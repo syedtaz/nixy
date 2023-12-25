@@ -19,10 +19,10 @@ module Flags = struct
 end
 
 module C = struct
-  let access = foreign "access" (ptr char @-> int @-> returning int)
+  let access = foreign ~check_errno:true "access" (ptr char @-> int @-> returning int)
 end
 
 let access path ~flag =
-  let res = C.access (CArray.start @@ CArray.of_string path) (Flags.bits_of_access flag) in
-  Errno.result res
+  Errno.result (fun () ->
+    C.access (CArray.start @@ CArray.of_string path) (Flags.bits_of_access flag))
 ;;

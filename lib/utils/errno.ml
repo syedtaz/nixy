@@ -21,9 +21,7 @@ let int_of_errno = function
 
 let check = foreign "strerror" (int @-> returning (ptr char))
 
-let result x =
-  match x with
-  | 0 -> Ok x
-  | -1 -> Error "Some error occurred"
-  | _ -> raise @@ Invalid_argument "unreachable"
+let result (f : unit -> 'a) =
+  try Ok (f ()) with
+  | Unix.Unix_error (err, _, _) -> Error (Unix.error_message err)
 ;;
